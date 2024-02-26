@@ -26,7 +26,11 @@ const CreatePlayerServices = (payload) => __awaiter(void 0, void 0, void 0, func
     return result;
 });
 const GetAllPlayerServices = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma.player.findMany({});
+    const result = yield prisma.player.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
+    });
     return result;
 });
 exports.PlayerServices = {
