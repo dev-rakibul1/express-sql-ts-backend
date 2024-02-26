@@ -6,10 +6,10 @@ import app from "../index";
 
 const sequelize = new Sequelize(config.database_url as string, {
   dialectOptions: {
-    // ssl: {
-    //   require: false,
-    //   rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
-    // },
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
+    },
   },
 });
 
