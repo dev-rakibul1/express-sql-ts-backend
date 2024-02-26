@@ -4,9 +4,17 @@ import { Sequelize } from "sequelize";
 import config from "../config/config";
 import app from "../index";
 
-const sequelize = new Sequelize(config.database_url as string);
+const sequelize = new Sequelize(config.database_url as string, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
+    },
+  },
+});
 
 let server: Server;
+
 const databaseConnect = async () => {
   try {
     await sequelize.authenticate();

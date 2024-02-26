@@ -15,7 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const config_1 = __importDefault(require("../config/config"));
 const index_1 = __importDefault(require("../index"));
-const sequelize = new sequelize_1.Sequelize(config_1.default.database_url);
+const sequelize = new sequelize_1.Sequelize(config_1.default.database_url, {
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
+        },
+    },
+});
 let server;
 const databaseConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
