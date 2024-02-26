@@ -19,11 +19,7 @@ const CreatePlayerServices = async (payload: Player): Promise<Player> => {
 };
 
 const GetAllPlayerServices = async (): Promise<Player[] | null> => {
-  const result = await prisma.player.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const result = await prisma.player.findMany({});
   return result;
 };
 export const PlayerServices = {
