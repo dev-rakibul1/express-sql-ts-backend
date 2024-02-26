@@ -9,4 +9,5 @@ const player_controller_1 = require("./player.controller");
 const router = express_1.default.Router();
 router.post("/create-player", player_controller_1.PlayerController.CreatePlayerController);
 router.get("/", player_controller_1.PlayerController.GetAllPlayerController);
+router.delete("/:id", player_controller_1.PlayerController.DeletePlayerController);
 exports.playerRoutes = router;

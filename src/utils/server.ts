@@ -1,23 +1,25 @@
 // databaseConnect.ts
 import { Server } from "http";
-import { Sequelize } from "sequelize";
 import config from "../config/config";
+
 import app from "../index";
 
-const sequelize = new Sequelize(config.database_url as string, {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
-    },
-  },
-});
+// console.log(app);
+
+// const sequelize = new Sequelize(config.database_url as string, {
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false,
+//     },
+//   },
+// });
 
 let server: Server;
 
 const databaseConnect = async () => {
   try {
-    await sequelize.authenticate();
+    // await sequelize.authenticate();
     console.log("Database is connected!");
     server = app.listen(config.port, () => {
       console.log(`Our server listen port is: ${config.port}`);
@@ -45,4 +47,4 @@ process.on("SIGTERM", () => {
   }
 });
 
-export default databaseConnect;
+databaseConnect();

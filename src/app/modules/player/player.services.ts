@@ -26,7 +26,29 @@ const GetAllPlayerServices = async (): Promise<Player[] | null> => {
   });
   return result;
 };
+
+const DeletePlayerServices = async (id: string): Promise<Player | null> => {
+  const player = await prisma.player.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!player) {
+    throw new Error("Player not found");
+  }
+
+  const deletedPlayer = await prisma.player.delete({
+    where: {
+      id: id,
+    },
+  });
+
+  return deletedPlayer;
+};
+
 export const PlayerServices = {
   CreatePlayerServices,
   GetAllPlayerServices,
+  DeletePlayerServices,
 };

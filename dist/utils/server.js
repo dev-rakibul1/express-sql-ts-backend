@@ -12,21 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
 const config_1 = __importDefault(require("../config/config"));
 const index_1 = __importDefault(require("../index"));
-const sequelize = new sequelize_1.Sequelize(config_1.default.database_url, {
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false, // You may need to set this option depending on your PostgreSQL server configuration
-        },
-    },
-});
+// console.log(app);
+// const sequelize = new Sequelize(config.database_url as string, {
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false,
+//     },
+//   },
+// });
 let server;
 const databaseConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield sequelize.authenticate();
+        // await sequelize.authenticate();
         console.log("Database is connected!");
         server = index_1.default.listen(config_1.default.port, () => {
             console.log(`Our server listen port is: ${config_1.default.port}`);
@@ -53,4 +53,4 @@ process.on("SIGTERM", () => {
         server.close();
     }
 });
-exports.default = databaseConnect;
+databaseConnect();

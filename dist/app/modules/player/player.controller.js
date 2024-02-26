@@ -38,7 +38,19 @@ const GetAllPlayerController = (0, TryCatch_1.default)((req, res) => __awaiter(v
         data: result,
     });
 }));
+// Get player api
+const DeletePlayerController = (0, TryCatch_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield player_services_1.PlayerServices.DeletePlayerServices(id);
+    (0, SendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Player get success!",
+        data: result,
+    });
+}));
 exports.PlayerController = {
     CreatePlayerController,
     GetAllPlayerController,
+    DeletePlayerController,
 };

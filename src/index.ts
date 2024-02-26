@@ -2,7 +2,6 @@ import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import router from "./app/routes/app.routes";
-import databaseConnect from "./utils/server";
 
 const app: Application = express();
 
@@ -31,6 +30,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   });
   next();
 });
-databaseConnect();
+// databaseConnect();
 
 export default app;

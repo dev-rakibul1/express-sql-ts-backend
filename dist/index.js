@@ -7,7 +7,6 @@ const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const http_status_1 = __importDefault(require("http-status"));
 const app_routes_1 = __importDefault(require("./app/routes/app.routes"));
-const server_1 = __importDefault(require("./utils/server"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 //parser
@@ -30,5 +29,5 @@ app.use((req, res, next) => {
     });
     next();
 });
-(0, server_1.default)();
+// databaseConnect();
 exports.default = app;

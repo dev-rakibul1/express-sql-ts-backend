@@ -30,7 +30,22 @@ const GetAllPlayerController = TryCatch(async (req: Request, res: Response) => {
   });
 });
 
+// Get player api
+const DeletePlayerController = TryCatch(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await PlayerServices.DeletePlayerServices(id);
+
+  SendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Player get success!",
+    data: result,
+  });
+});
+
 export const PlayerController = {
   CreatePlayerController,
   GetAllPlayerController,
+  DeletePlayerController,
 };

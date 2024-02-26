@@ -33,7 +33,24 @@ const GetAllPlayerServices = () => __awaiter(void 0, void 0, void 0, function* (
     });
     return result;
 });
+const DeletePlayerServices = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const player = yield prisma.player.findUnique({
+        where: {
+            id: id,
+        },
+    });
+    if (!player) {
+        throw new Error("Player not found");
+    }
+    const deletedPlayer = yield prisma.player.delete({
+        where: {
+            id: id,
+        },
+    });
+    return deletedPlayer;
+});
 exports.PlayerServices = {
     CreatePlayerServices,
     GetAllPlayerServices,
+    DeletePlayerServices,
 };
