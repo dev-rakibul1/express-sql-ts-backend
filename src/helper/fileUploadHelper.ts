@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
+import * as fs from "fs";
 import multer from "multer";
 import path from "path";
 import { ICloudinaryResponse, IUploadFile } from "../types/common";
@@ -28,6 +29,7 @@ const uploadToCloudinary = async (
     cloudinary.uploader.upload(
       file.path,
       (error: Error, result: ICloudinaryResponse) => {
+        fs.unlinkSync(file.path);
         if (error) {
           reject(error);
         } else {
