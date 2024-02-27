@@ -19,8 +19,7 @@ const TryCatch_1 = __importDefault(require("../../../shared/TryCatch"));
 const player_services_1 = require("./player.services");
 // create player api
 const CreatePlayerController = (0, TryCatch_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const payload = req.body;
-    const result = yield player_services_1.PlayerServices.CreatePlayerServices(payload);
+    const result = yield player_services_1.PlayerServices.CreatePlayerServices(req);
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
@@ -45,7 +44,7 @@ const DeletePlayerController = (0, TryCatch_1.default)((req, res) => __awaiter(v
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "Player get success!",
+        message: "Player delete success!",
         data: result,
     });
 }));
