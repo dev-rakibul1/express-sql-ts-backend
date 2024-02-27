@@ -11,17 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerServices = void 0;
 const client_1 = require("@prisma/client");
-const fileUploadHelper_1 = require("../../../helper/fileUploadHelper");
+// import { imageSetup } from "../../../helper/fileUploadHelper";
+// import { IUploadFile } from "../../../types/common";
 const prisma = new client_1.PrismaClient();
 // Create player
 const CreatePlayerServices = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
     const player = payload.email;
-    const image = req.file;
-    const uploadImage = yield fileUploadHelper_1.imageSetup.uploadToCloudinary(image);
-    if (uploadImage) {
-        req.body.file = uploadImage.secure_url;
-    }
+    // const image = req.file as IUploadFile;
+    // const uploadImage = await imageSetup.uploadToCloudinary(image);
+    // if (uploadImage) {
+    //   req.body.file = uploadImage.secure_url;
+    // }
     console.log(payload);
     const isPlayerExist = yield prisma.player.findFirst({
         where: {

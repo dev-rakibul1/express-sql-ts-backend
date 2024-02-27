@@ -1,7 +1,7 @@
 import { Player, PrismaClient } from "@prisma/client";
 import { Request } from "express";
-import { imageSetup } from "../../../helper/fileUploadHelper";
-import { IUploadFile } from "../../../types/common";
+// import { imageSetup } from "../../../helper/fileUploadHelper";
+// import { IUploadFile } from "../../../types/common";
 
 const prisma = new PrismaClient();
 
@@ -10,12 +10,12 @@ const CreatePlayerServices = async (req: Request): Promise<Player> => {
   const payload = req.body;
   const player = payload.email;
 
-  const image = req.file as IUploadFile;
-  const uploadImage = await imageSetup.uploadToCloudinary(image);
+  // const image = req.file as IUploadFile;
+  // const uploadImage = await imageSetup.uploadToCloudinary(image);
 
-  if (uploadImage) {
-    req.body.file = uploadImage.secure_url;
-  }
+  // if (uploadImage) {
+  //   req.body.file = uploadImage.secure_url;
+  // }
 
   console.log(payload);
   const isPlayerExist = await prisma.player.findFirst({
