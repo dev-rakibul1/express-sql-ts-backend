@@ -1,9 +1,23 @@
 import { Player, PrismaClient } from "@prisma/client";
+import { Request } from "express";
+import { imageSetup } from "../../../helper/fileUploadHelper";
+import { IUploadFile } from "../../../types/common";
 
 const prisma = new PrismaClient();
 
-const CreatePlayerServices = async (payload: Player): Promise<Player> => {
+// Create player
+const CreatePlayerServices = async (req: Request): Promise<Player> => {
+  const payload = req.body;
   const player = payload.email;
+
+  const image = req.file as IUploadFile;
+  const uploadImage = await imageSetup.uploadToCloudinary(image);
+
+  if (uploadImage) {
+    req.body.file = uploadImage.secure_url;
+  }
+
+  console.log(payload);
   const isPlayerExist = await prisma.player.findFirst({
     where: {
       email: player,
@@ -18,6 +32,7 @@ const CreatePlayerServices = async (payload: Player): Promise<Player> => {
   return result;
 };
 
+// Get all player
 const GetAllPlayerServices = async (): Promise<Player[] | null> => {
   const result = await prisma.player.findMany({
     orderBy: {
@@ -27,6 +42,7 @@ const GetAllPlayerServices = async (): Promise<Player[] | null> => {
   return result;
 };
 
+// Delete player
 const DeletePlayerServices = async (id: string): Promise<Player | null> => {
   const player = await prisma.player.findUnique({
     where: {

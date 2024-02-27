@@ -13,16 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Player {
-  id     String  @id @default(uuid())
-  name String
-  email String 
-  goals String
-  assist String
-  password String
-  image String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
 
-@@map("players")  
+
+
+model Player {
+  id                  String      @id @default(uuid())
+  name                String
+  email               String      @unique
+  goals               String?
+  assist              String?
+  password            String
+  file                String?
+  type                PlayerType
+  active              String
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  @@map("players")
+}
+
+enum PlayerType {
+  REGULAR
+  IRREGULAR
 }

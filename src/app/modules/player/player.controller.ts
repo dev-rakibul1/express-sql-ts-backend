@@ -7,8 +7,7 @@ import { PlayerServices } from "./player.services";
 // create player api
 
 const CreatePlayerController = TryCatch(async (req: Request, res: Response) => {
-  const payload = req.body;
-  const result = await PlayerServices.CreatePlayerServices(payload);
+  const result = await PlayerServices.CreatePlayerServices(req);
 
   SendResponse(res, {
     statusCode: httpStatus.OK,
@@ -39,7 +38,7 @@ const DeletePlayerController = TryCatch(async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Player get success!",
+    message: "Player delete success!",
     data: result,
   });
 });
