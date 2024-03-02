@@ -17,22 +17,21 @@ datasource db {
 
 
 model Player {
-  id                  String      @id @default(uuid())
-  name                String
-  email               String      @unique
-  goals               String?
-  assist              String?
-  password            String
-  file                String?
-  type                PlayerType
-  active              String
-  createdAt           DateTime    @default(now())
-  updatedAt           DateTime    @updatedAt
+  id                        String      @id @default(uuid())
+  name                      String
+  email                     String      @unique
+  title                     String
+  age                       String
+  danceStyle                String
+  experienceLevel           String
+  address                   String
+  description               String
+  file                      String?
+  className                 String?
+  createdAt                 DateTime    @default(now())
+  updatedAt                 DateTime    @updatedAt
 
-  @@map("players")
+  @@map("dancers")
 }
 
-enum PlayerType {
-  REGULAR
-  IRREGULAR
-}
+

@@ -5,7 +5,6 @@ import TryCatch from "../../../shared/TryCatch";
 import { PlayerServices } from "./player.services";
 
 // create player api
-
 const CreatePlayerController = TryCatch(async (req: Request, res: Response) => {
   const result = await PlayerServices.CreatePlayerServices(req);
 
